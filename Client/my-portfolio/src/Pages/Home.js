@@ -26,6 +26,8 @@ export default function Home() {
           </li>
         ))}
       </ul>
+      
+    <img src= "https://verpex.com/assets/uploads/images/blog/How-to-become-a-Backend-Developer.jpg?v=1665484477" width = "200"></img>
     </div>
   );
 }
