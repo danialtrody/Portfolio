@@ -19,15 +19,25 @@ export default function Projects() {
 
   return (
     <div>
-      <h1>Project Page</h1>
-      <ul>
-        {Projects.map( project => (
-          <li key={project.id}>
-            <h2>{project.title}</h2>
-            <p>{project.description}</p>
-          </li>
+      <div className="container mt-4">
+      <div className="row">
+        {Projects.map(project => (
+          <div className="col-md-4 mb-4" key={project.id}>
+            <div className="card text-white bg-primary" style={{ maxWidth: '20rem' }}>
+              <div className="card-header">Project {project.id}</div>
+              <div className="card-body">
+                <h4 className="card-title">{project.title}</h4>
+                <p className="card-text">{project.description}</p>
+                <p className="card-technologies">{project.technologies}</p>
+                <p className="card-github">{project.github}</p>
+                <p className="card-image">{project.image}</p>
+
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
+    </div>
     </div>
   );
 }

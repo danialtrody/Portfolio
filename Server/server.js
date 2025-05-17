@@ -5,8 +5,23 @@ const app = express();
 const port = 5000;
 
 const projectData = [
-    {id:1, title: "project 1", description: " Description of project 1" },
-    {id:2, title: "project 2", description: " Description of project 2" }
+    {
+        id:1,
+        title: "Portfolio Website",
+        description: "A personal portfolio site built with HTML, CSS, and JavaScript showcasing my web development skills.",
+        technologies: "[HTML, CSS, JavaScript]",
+        github: "https://github.com/danialtrody/Portfolio",
+        image: "https://yourdomain.com/images/portfolio.png"
+    },
+
+    {
+        id:2,
+        title: "Task Manager App",
+        description: "A full-stack task manager app with user authentication, allowing users to create, edit, and delete tasks.",
+        technologies: ["React", "Node.js", "Express", "MongoDB"],
+        github: "https://github.com/danialtrody/task-manager",
+        github: "https://github.com/danialtrody/task-manager",
+    }
 ]
 
 const contactData = [
