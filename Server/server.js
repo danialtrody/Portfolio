@@ -36,13 +36,42 @@ const projectData = [
 ]
 
 const contactData = [
-    {id:1 , name: "Danial Trody" , email:"trody2001@gmail.com"},
-    {id:2 , name: "Muhammad Egbaria" , email:"mhmad.m.ig2001@gmail.com"}
+    {
+        id: 1,
+        name: "Danial Trody",
+        email: "trody2001@gmail.com",
+        phone: "+972 0545361151",
+        location: "Haifa, Israel",
+        linkedin: "https://www.linkedin.com/in/danialtrody",
+        github: "https://github.com/danialtrody"
+    },
+    {
+        id: 2,
+        name: "Muhammad Egbaria",
+        email: "mhmad.m.ig2001@gmail.com",
+        phone: "+972 0587797724",
+        location: "Haifa, Israel",
+        linkedin: "https://www.linkedin.com/in/muhammad-egbaria",
+        github: "https://github.com/muhammad-egbaria"
+    }
 ]
 
+
 const homeData = [
-    {id:1 , about: "Hi, I'm Danial — a passionate Web Developer."},
-    {id:2 , about: "Hi, I'm Muhammad — a passionate Web Developer."}
+    {
+        id: 1,
+        name: "Danial Trody",
+        about: "Hi, I'm Danial — a passionate Web Developer specializing in frontend technologies like React. I love building responsive and interactive web apps.",
+        skills: ["HTML", "CSS", "JavaScript", "React",, "Node.js", "Express"],
+        interests: ["UI/UX Design", "Open Source", "Web Performance"],
+    },
+    {
+        id: 2,
+        name: "Muhammad Egbaria",
+        about: "Hi, I'm Muhammad — a creative full-stack developer who enjoys solving real-world problems with scalable web apps.",
+        skills: ["JavaScript", "TypeScript", "MongoDB", "Express", "React", "Node.js"],
+        interests: ["Machine Learning", "APIs", "Backend Development"],
+    }
 
 ]
 
