@@ -7,21 +7,32 @@ const port = 5000;
 const projectData = [
     {
         id:1,
-        title: "Portfolio Website",
-        description: "A personal portfolio site built with HTML, CSS, and JavaScript showcasing my web development skills.",
-        technologies: "[HTML, CSS, JavaScript]",
-        github: "https://github.com/danialtrody/Portfolio",
-        image: "https://yourdomain.com/images/portfolio.png"
+        title: "Data Structures Implementations",
+        description: "A comprehensive collection of classic data structure implementations.",
+        technologies: "Java",
+        github: "https://github.com/danialtrody/Data-Structures-Implementations",
+        image: "dataStructure.png"
     },
 
     {
         id:2,
         title: "Task Manager App",
         description: "A full-stack task manager app with user authentication, allowing users to create, edit, and delete tasks.",
-        technologies: ["React", "Node.js", "Express", "MongoDB"],
-        github: "https://github.com/danialtrody/task-manager",
-        github: "https://github.com/danialtrody/task-manager",
-    }
+        technologies: "[React, Node.js, Express, MongoDB]",
+        github: "https://github.com/danialtrody/ToDo",
+        image: "/TODO.png"
+    },
+
+    {
+        id: 3,
+        title: "Background Generator",
+        description: "A simple web app to generate CSS gradient backgrounds with live preview.",
+        technologies: "[HTML, CSS, JavaScript]",
+        github: "https://github.com/danialtrody/Background-generator",
+        image: "/background-generator.png"
+      }
+      
+
 ]
 
 const contactData = [
