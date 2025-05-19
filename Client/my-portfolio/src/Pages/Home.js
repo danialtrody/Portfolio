@@ -15,26 +15,15 @@ export default function Home() {
   }, []);
 
   return (
-    // <div>
-    //   <h1>Home Page</h1>
-    //   <ul>
-    //     {homeData.map(home => (
-    //       <li key={home.id} style={{ marginBottom: '2rem' }}>
- 
-    //       </li>
-    //     ))}
-    //   </ul>
 
-    //   <img
-    //     src="https://verpex.com/assets/uploads/images/blog/How-to-become-a-Backend-Developer.jpg?v=1665484477"
-    //     width="200"
-    //     alt="Backend Development"
-    //   />
-    // </div>
+
 
 
 <div className="container mt-4">
+
       <h1 className="mb-4">About Us</h1>
+
+         
       <div className="row">
         {Home.map(item => (
           <div className="col-md-6 mb-4" key={item.id}>

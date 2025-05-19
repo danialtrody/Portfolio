@@ -72,7 +72,6 @@ const homeData = [
         skills: ["JavaScript", "TypeScript", "MongoDB", "Express", "React", "Node.js"],
         interests: ["Machine Learning", "APIs", "Backend Development"],
     }
-
 ]
 
 
