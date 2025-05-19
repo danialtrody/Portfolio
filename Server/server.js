@@ -8,6 +8,7 @@ const port = 5000;
 const projectsFile = 'projects.json';
 const contactsFile = 'contact.json';
 const homeFile = 'home.json';
+const customerRequest = "customerRequest.json"
 
 app.use(cors());
 app.use(express.json()); // Allow JSON body parsing
@@ -87,7 +88,16 @@ app.get("/api/home", (req, res) => {
 
 
 
-
+app.post("/api/contact", (req, res) => {
+  const newData = req.body;
+  const existing = readJSON(customerRequest);
+  existing.push({
+    id: Date.now(),
+    ...newData
+  });
+  writeJSON(customerRequest, existing);
+  res.send('Saved successfully!');
+});
 
 // --- START SERVER ---
 app.listen(port, () => {
