@@ -6,17 +6,20 @@
     "technologies": "Java",
     "github": "https://github.com/danialtrody/Data-Structures-Implementations",
     "image": "dataStructure.png",
-    "date": "2024-01-01"
+    "date": "2024-01-01",
+    "demo": "",
+    "updatedAt": "2025-05-19T14:54:01.802Z"
   },
   {
     "id": 2,
-    "title": "Task Manager App 111111111111111111111111111111111111111111111111",
+    "title": "Task Manager App",
     "description": "A full-stack task manager app with user authentication, allowing users to create, edit, and delete tasks.",
     "technologies": "[React, Node.js, Express, MongoDB]",
     "github": "https://github.com/danialtrody/ToDo",
     "image": "/TODO.png",
     "date": "2024-02-01",
-    "demo": ""
+    "demo": "",
+    "updatedAt": "2025-05-19T15:28:53.267Z"
   },
   {
     "id": 3,
@@ -25,7 +28,9 @@
     "technologies": "[HTML, CSS, JavaScript]",
     "github": "https://github.com/danialtrody/Background-generator",
     "image": "/background-generator.png",
-    "date": "2024-03-01"
+    "date": "2024-03-01",
+    "demo": "",
+    "updatedAt": "2025-05-19T14:53:55.962Z"
   },
   {
     "id": 1747666059235,
@@ -38,5 +43,14 @@
     "image": "",
     "date": "",
     "updatedAt": "2025-05-19T14:49:56.217Z"
+  },
+  {
+    "id": 1747668523593,
+    "createdAt": "2025-05-19T15:28:43.593Z",
+    "title": "גכד",
+    "description": "דגכ",
+    "technologies": "דגכ",
+    "github": "דכג",
+    "image": "דגכ"
   }
 ]

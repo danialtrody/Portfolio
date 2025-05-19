@@ -8,9 +8,7 @@ export default function Projects() {
     description: '',
     technologies: '',
     github: '',
-    demo: '',
     image: '',
-    date: ''
   });
   const [editingId, setEditingId] = useState(null); // Tracks which project is being edited
 
@@ -73,9 +71,7 @@ export default function Projects() {
         ? project.technologies.join(', ')
         : project.technologies || '',
       github: project.github || '',
-      demo: project.demo || '',
       image: project.image || '',
-      date: project.date || ''
     });
     setEditingId(project.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -89,9 +85,7 @@ export default function Projects() {
       description: '',
       technologies: '',
       github: '',
-      demo: '',
       image: '',
-      date: ''
     });
   };
 
@@ -105,9 +99,8 @@ export default function Projects() {
           <input className="form-control mb-2" name="description" value={formData.description} onChange={handleChange} placeholder="Description" required />
           <input className="form-control mb-2" name="technologies" value={formData.technologies} onChange={handleChange} placeholder="Technologies (comma-separated)" />
           <input className="form-control mb-2" name="github" value={formData.github} onChange={handleChange} placeholder="GitHub URL" />
-          <input className="form-control mb-2" name="demo" value={formData.demo} onChange={handleChange} placeholder="Live Demo URL" />
           <input className="form-control mb-2" name="image" value={formData.image} onChange={handleChange} placeholder="Image URL" />
-          <input className="form-control mb-2" name="date" value={formData.date} onChange={handleChange} placeholder="Date" />
+
 
           <div className="d-flex gap-2">
             <button type="submit" className="btn btn-success">{editingId ? 'Update' : 'Add Project'}</button>
