@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "title": "Data Structures Implementations",
+    "description": "A comprehensive collection of classic data structure implementations.",
+    "technologies": "Java",
+    "github": "https://github.com/danialtrody/Data-Structures-Implementations",
+    "image": "dataStructure.png",
+    "date": "2024-01-01"
+  },
+  {
+    "id": 2,
+    "title": "Task Manager App",
+    "description": "A full-stack task manager app with user authentication, allowing users to create, edit, and delete tasks.",
+    "technologies": "[React, Node.js, Express, MongoDB]",
+    "github": "https://github.com/danialtrody/ToDo",
+    "image": "/TODO.png",
+    "date": "2024-02-01"
+  },
+  {
+    "id": 3,
+    "title": "Background Generator",
+    "description": "A simple web app to generate CSS gradient backgrounds with live preview.",
+    "technologies": "[HTML, CSS, JavaScript]",
+    "github": "https://github.com/danialtrody/Background-generator",
+    "image": "/background-generator.png",
+    "date": "2024-03-01"
+  },
+  {
+    "id": 1747663090465,
+    "title": "wd",
+    "description": "dwd",
+    "technologies": "dwqd",
+    "github": "dwqdq",
+    "demo": "",
+    "image": "dwqwd",
+    "date": ""
+  }
+]
