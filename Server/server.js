@@ -34,11 +34,44 @@ app.get("/api/projects", (req, res) => {
 
 app.post("/api/projects", (req, res) => {
   const projects = readJSON(projectsFile);
-  const newProject = { id: Date.now(), ...req.body };
+  const newProject = { id: Date.now(),
+    createdAt: new Date().toISOString() ,
+     ...req.body };
   projects.push(newProject);
   writeJSON(projectsFile, projects);
   res.status(201).json(newProject);
 });
+
+// DELETE מחיקת פרויקט לפי ID
+app.delete("/api/projects/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    let projects = readJSON(projectsFile);
+    const exists = projects.some(p => p.id === id);
+    if (!exists) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+    projects = projects.filter(project => project.id !== id);
+    writeJSON(projectsFile, projects);
+    res.status(200).json({ message: "Project deleted" });
+  });
+  
+  // PUT עדכון פרויקט לפי ID
+  app.put("/api/projects/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    let projects = readJSON(projectsFile);
+    const index = projects.findIndex(p => p.id === id);
+    if (index === -1) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+    const updatedProject = {
+        ...projects[index],
+        ...req.body,
+        updatedAt: new Date().toISOString()  // מוסיפים תאריך עדכון
+      };
+    projects[index] = updatedProject;
+    writeJSON(projectsFile, projects);
+    res.json(updatedProject);
+  });
 
 // --- CONTACT ROUTE ---
 app.get("/api/contact", (req, res) => {
@@ -51,6 +84,10 @@ app.get("/api/home", (req, res) => {
   const home = readJSON(homeFile);
   res.json(home);
 });
+
+
+
+
 
 // --- START SERVER ---
 app.listen(port, () => {
