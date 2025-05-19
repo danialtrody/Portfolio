@@ -1,0 +1,25 @@
+[
+    [
+      {
+        "image": "https://verpex.com/assets/uploads/images/blog/How-to-become-a-Backend-Developer.jpg?v=1665484477",
+        "title": "We Create Website And Application"
+      }
+    ],
+    [
+      {
+        "id": 1,
+        "name": "Danial Trody",
+        "about": "Hi, I'm Danial — a passionate Web Developer specializing in frontend technologies like React. I love building responsive and interactive web apps.",
+        "skills": ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express"],
+        "interests": ["UI/UX Design", "Open Source", "Web Performance"]
+      },
+      {
+        "id": 2,
+        "name": "Muhammad Egbaria",
+        "about": "Hi, I'm Muhammad — a creative full-stack developer who enjoys solving real-world problems with scalable web apps.",
+        "skills": ["JavaScript", "TypeScript", "MongoDB", "Express", "React", "Node.js"],
+        "interests": ["Machine Learning", "APIs", "Backend Development"]
+      }
+    ]
+  ]
+  

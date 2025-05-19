@@ -1,96 +1,58 @@
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs"); // Make sure this is included!
+const fs = require("fs");
 
 const app = express();
 const port = 5000;
+
 const projectsFile = 'projects.json';
+const contactsFile = 'contact.json';
+const homeFile = 'home.json';
 
 app.use(cors());
-app.use(express.json()); // Enable reading JSON from body
+app.use(express.json()); // Allow JSON body parsing
 
-// Helper function to read projects from the file
-function readProjects() {
-  if (!fs.existsSync(projectsFile)) {
-    fs.writeFileSync(projectsFile, JSON.stringify([])); // create file if not exists
+// --- Helper to read JSON files ---
+function readJSON(filePath) {
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, JSON.stringify([])); // initialize empty array if file doesn't exist
   }
-  const data = fs.readFileSync(projectsFile);
+  const data = fs.readFileSync(filePath);
   return JSON.parse(data);
 }
 
-// Helper function to write projects to the file
-function writeProjects(data) {
-  fs.writeFileSync(projectsFile, JSON.stringify(data, null, 2));
+// --- Helper to write JSON files ---
+function writeJSON(filePath, data) {
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 }
 
-// ✅ GET projects - returns projects from the file
+// --- PROJECTS ROUTES ---
 app.get("/api/projects", (req, res) => {
-  const projects = readProjects();
+  const projects = readJSON(projectsFile);
   res.json(projects);
 });
 
-// ✅ POST projects - adds a new project
 app.post("/api/projects", (req, res) => {
-  const projects = readProjects();
+  const projects = readJSON(projectsFile);
   const newProject = { id: Date.now(), ...req.body };
   projects.push(newProject);
-  writeProjects(projects);
+  writeJSON(projectsFile, projects);
   res.status(201).json(newProject);
 });
 
-// Other APIs (contact and home)
-const contactData = [
-  {
-    id: 1,
-    name: "Danial Trody",
-    email: "trody2001@gmail.com",
-    phone: "+972 0545361151",
-    location: "Haifa, Israel",
-    linkedin: "https://www.linkedin.com/in/danialtrody",
-    github: "https://github.com/danialtrody"
-  },
-  {
-    id: 2,
-    name: "Muhammad Egbaria",
-    email: "mhmad.m.ig2001@gmail.com",
-    phone: "+972 0587797724",
-    location: "Haifa, Israel",
-    linkedin: "https://www.linkedin.com/in/muhammad-egbaria",
-    github: "https://github.com/muhammad-egbaria"
-  }
-];
-
-const homeData = [
-  [{
-    image: 'https://verpex.com/assets/uploads/images/blog/How-to-become-a-Backend-Developer.jpg?v=1665484477',
-    title: 'We Create Website And Application',
-  }],
-  [
-    {
-      id: 1,
-      name: "Danial Trody",
-      about: "Hi, I'm Danial — a passionate Web Developer specializing in frontend technologies like React. I love building responsive and interactive web apps.",
-      skills: ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express"],
-      interests: ["UI/UX Design", "Open Source", "Web Performance"],
-    },
-    {
-      id: 2,
-      name: "Muhammad Egbaria",
-      about: "Hi, I'm Muhammad — a creative full-stack developer who enjoys solving real-world problems with scalable web apps.",
-      skills: ["JavaScript", "TypeScript", "MongoDB", "Express", "React", "Node.js"],
-      interests: ["Machine Learning", "APIs", "Backend Development"],
-    }
-  ]
-];
-
+// --- CONTACT ROUTE ---
 app.get("/api/contact", (req, res) => {
-  res.json(contactData);
+  const contacts = readJSON(contactsFile);
+  res.json(contacts);
 });
 
+// --- HOME ROUTE ---
 app.get("/api/home", (req, res) => {
-  res.json(homeData);
+  const home = readJSON(homeFile);
+  res.json(home);
 });
 
+// --- START SERVER ---
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`✅ Server running at http://localhost:${port}`);
 });
