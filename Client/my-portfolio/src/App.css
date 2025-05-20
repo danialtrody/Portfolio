@@ -117,3 +117,41 @@
   padding: 20px;
   border-radius: 20px;
 }
+
+
+
+@media only screen and (min-width: 1025px) {
+  .ContactImg {
+    margin-top: -5%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .ContactImg {
+    margin-top: -10%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .ContactImg {
+    margin-top: -25%;
+    
+  }
+  .contact-page {
+    gap: 0rem;
+  }
+}
+
+.Formcontainer {
+  
+  background-color: #f4f4f4 !important
+}
+.bg-primary {
+ 
+  background-color: rgb(13 110 253 / 0%) !important;
+}
+
+.navbar-brand, .navbar-expand-lg ,.navbar-nav ,.nav-link {
+ color: rgb(33, 37, 41) !important;
+}
+.mb-5 {
+  background-color: #ffffff00;
+}

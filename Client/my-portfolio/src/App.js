@@ -12,12 +12,7 @@ import ".//App.css"
 function App() {
 
   const backgroundStyle = {
-    backgroundImage: `url('/background.avif')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    minHeight: '100vh',
-
-
+    background: 'linear-gradient(to right, rgb(155, 214, 238), rgb(202, 146, 228))',
   };
 
   return (

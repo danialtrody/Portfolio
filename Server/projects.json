@@ -31,5 +31,15 @@
     "date": "2024-03-01",
     "demo": "",
     "updatedAt": "2025-05-19T14:53:55.962Z"
+  },
+  {
+    "id": 1747760143655,
+    "createdAt": "2025-05-20T16:55:43.655Z",
+    "title": "Spider-Man",
+    "description": "Spider-Man is the alter ego of Peter Parker, a teenage high school student who gains superpowers after being bitten by a radioactive spider",
+    "technologies": "Spider",
+    "github": "TEST",
+    "image": "https://www.copahost.com/blog/wp-content/uploads/2019/07/imgsize2.png",
+    "updatedAt": "2025-05-20T16:57:24.332Z"
   }
 ]
