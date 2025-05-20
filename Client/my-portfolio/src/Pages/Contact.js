@@ -3,9 +3,6 @@ import axios from 'axios';
 import ContactForm from "../Components/Contact_Form";
 import "../Components/Contact_Form_Style.css";
 
-// Use environment variable or fallback to localhost:
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-
 export default function Contact() {
   const [contactData, setContactData] = useState([]);
 
@@ -18,7 +15,7 @@ export default function Contact() {
   });
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/api/contact`)
+    axios.get('http://localhost:5000/api/contact')
       .then(response => {
         setContactData(response.data);
       })
@@ -30,7 +27,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_BASE_URL}/api/contact`, formData);
+      await axios.post('http://localhost:5000/api/contact', formData);
       setFormData({
         firstname: "",
         lastname: "",

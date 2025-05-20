@@ -3,7 +3,7 @@ const cors = require("cors");
 const fs = require("fs");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = 5000;
 
 const projectsFile = 'projects.json';
 const contactsFile = 'contact.json';
