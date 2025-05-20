@@ -45,6 +45,7 @@ function DualCV() {
         <section>
           <h2>Education</h2>
           <p><strong>Tel-Hai Academic College</strong> | 2021 - Present</p>
+          <p>1 semester until graduation</p>
         </section>
 
         <section>
@@ -72,7 +73,7 @@ function DualCV() {
             <li>Html - CSS - JavaScript</li>
             <li>Python</li>
             <li>Linux</li>
-            <li>C / C++ / C#</li>
+            <li>C / C++ </li>
             <li>Algorithm</li>
             <li>Java-OOP</li>
             <li>The Complete 2024 Web Development Bootcamp - <a href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank" rel="noreferrer">Udemy</a></li>
