@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// 'http://localhost:5000'
+const API_BASE_URL = "https://portfolio-6-5icm.onrender.com"
+
+
+
 export default function Projects() {
   const [projects, setProjects] = useState([]); // Holds all project data
   const [formData, setFormData] = useState({
@@ -14,7 +19,7 @@ export default function Projects() {
 
   // 🔁 useEffect - Runs on component mount to fetch projects from the server
   useEffect(() => {
-    axios.get('https://portfolio-6-5icm.onrender.com/api/projects')
+    axios.get(`${API_BASE_URL}/api/projects`)
       .then(response => setProjects(response.data))
       .catch(error => console.error('Error fetching the data: ', error));
   }, []);
@@ -33,7 +38,7 @@ export default function Projects() {
 
     if (editingId) {
       // If editing: send PUT request
-      axios.put(`https://portfolio-6-5icm.onrender.com/api/projects/${editingId}`, formData)
+      axios.put(`${API_BASE_URL}/api/projects/${editingId}`, formData)
         .then(response => {
           setProjects(prev =>
             prev.map(p => (p.id === editingId ? response.data : p))
@@ -44,7 +49,7 @@ export default function Projects() {
         .catch(error => console.error('Error updating project: ', error));
     } else {
       // If adding: send POST request
-      axios.post('https://portfolio-6-5icm.onrender.com/api/projects', formData)
+      axios.post(`${API_BASE_URL}/api/projects`, formData)
         .then(response => {
           setProjects(prev => [...prev, response.data]);
           resetForm();
@@ -55,7 +60,7 @@ export default function Projects() {
 
   // 🗑 Deletes a project by ID
   const handleDelete = id => {
-    axios.delete(`https://portfolio-6-5icm.onrender.com/api/projects/${id}`)
+    axios.delete(`${API_BASE_URL}/api/projects/${id}`)
       .then(() => {
         setProjects(prev => prev.filter(p => p.id !== id));
       })

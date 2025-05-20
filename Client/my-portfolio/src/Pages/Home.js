@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 
+// 'http://localhost:5000'
+const API_BASE_URL = "https://portfolio-6-5icm.onrender.com"
+
+
 export default function Home() {
   const [homeData, setHomeData] = useState([[], []]);
 
   useEffect(() => {
-    axios.get('https://portfolio-6-5icm.onrender.com/api/home')
+    axios.get(`${API_BASE_URL}/api/home`)
       .then(response => setHomeData(response.data))
       .catch(error => console.error('Error fetching the data:', error));
   }, []);

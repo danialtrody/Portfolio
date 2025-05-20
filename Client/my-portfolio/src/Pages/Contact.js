@@ -3,6 +3,10 @@ import axios from 'axios';
 import ContactForm from "../Components/Contact_Form";
 import "../Components/Contact_Form_Style.css";
 
+
+// 'http://localhost:5000'
+const API_BASE_URL = "https://portfolio-6-5icm.onrender.com"
+
 export default function Contact() {
   const [contactData, setContactData] = useState([]);
 
@@ -15,7 +19,7 @@ export default function Contact() {
   });
 
   useEffect(() => {
-    axios.get('https://portfolio-6-5icm.onrender.com/api/contact')
+    axios.get(`${API_BASE_URL}/api/contact`)
       .then(response => {
         setContactData(response.data);
       })
@@ -27,7 +31,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://portfolio-6-5icm.onrender.com/api/contact', formData);
+      await axios.post(`${API_BASE_URL}/api/contact`, formData);
       setFormData({
         firstname: "",
         lastname: "",
