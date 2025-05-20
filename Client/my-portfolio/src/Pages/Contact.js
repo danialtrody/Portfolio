@@ -15,7 +15,7 @@ export default function Contact() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/contact')
+    axios.get('https://portfolio-6-5icm.onrender.com/api/contact')
       .then(response => {
         setContactData(response.data);
       })
@@ -27,7 +27,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/contact', formData);
+      await axios.post('https://portfolio-6-5icm.onrender.com/api/contact', formData);
       setFormData({
         firstname: "",
         lastname: "",

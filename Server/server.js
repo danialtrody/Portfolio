@@ -74,11 +74,6 @@ app.delete("/api/projects/:id", (req, res) => {
     res.json(updatedProject);
   });
 
-// --- CONTACT ROUTE ---
-app.get("/api/contact", (req, res) => {
-  const contacts = readJSON(contactsFile);
-  res.json(contacts);
-});
 
 // --- HOME ROUTE ---
 app.get("/api/home", (req, res) => {
@@ -86,6 +81,13 @@ app.get("/api/home", (req, res) => {
   res.json(home);
 });
 
+
+
+// --- CONTACT ROUTE ---
+app.get("/api/contact", (req, res) => {
+  const contacts = readJSON(contactsFile);
+  res.json(contacts);
+});
 
 
 app.post("/api/contact", (req, res) => {
