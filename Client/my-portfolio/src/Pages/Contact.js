@@ -3,6 +3,9 @@ import axios from 'axios';
 import ContactForm from "../Components/Contact_Form";
 import "../Components/Contact_Form_Style.css";
 
+const API_BASE_URL = 'https://portfolio-5yr2.onrender.com';
+
+
 export default function Contact() {
   const [contactData, setContactData] = useState([]);
 
@@ -15,7 +18,7 @@ export default function Contact() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/contact')
+    axios.get(`${API_BASE_URL}/api/contact`)
       .then(response => {
         setContactData(response.data);
       })
@@ -27,7 +30,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/contact', formData);
+      await axios.post(`${API_BASE_URL}/api/contact`, formData);
       setFormData({
         firstname: "",
         lastname: "",
