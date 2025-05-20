@@ -5,17 +5,33 @@ import Projects from "./Pages/Projects";
 import Contact from "./Pages/Contact";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import Resume from "./Pages/Resume"
+import ".//App.css"
+
 
 function App() {
+
+  const backgroundStyle = {
+    backgroundImage: `url('/background.avif')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    minHeight: '100vh',
+
+
+  };
+
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-      <Footer/>
+      <div style={backgroundStyle} >
+        <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/resume" element={<Resume />} />
+          </Routes>
+        <Footer/>
+      </div>
     </Router>
   );
 }
