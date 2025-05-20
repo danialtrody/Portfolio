@@ -14,7 +14,7 @@ export default function Projects() {
 
   // 🔁 useEffect - Runs on component mount to fetch projects from the server
   useEffect(() => {
-    axios.get('http://localhost:5000/api/projects')
+    axios.get('https://portfolio-6-5icm.onrender.com/api/projects')
       .then(response => setProjects(response.data))
       .catch(error => console.error('Error fetching the data: ', error));
   }, []);
@@ -33,7 +33,7 @@ export default function Projects() {
 
     if (editingId) {
       // If editing: send PUT request
-      axios.put(`http://localhost:5000/api/projects/${editingId}`, formData)
+      axios.put(`https://portfolio-6-5icm.onrender.com/api/projects/${editingId}`, formData)
         .then(response => {
           setProjects(prev =>
             prev.map(p => (p.id === editingId ? response.data : p))
@@ -44,7 +44,7 @@ export default function Projects() {
         .catch(error => console.error('Error updating project: ', error));
     } else {
       // If adding: send POST request
-      axios.post('http://localhost:5000/api/projects', formData)
+      axios.post('https://portfolio-6-5icm.onrender.com/api/projects', formData)
         .then(response => {
           setProjects(prev => [...prev, response.data]);
           resetForm();
@@ -55,7 +55,7 @@ export default function Projects() {
 
   // 🗑 Deletes a project by ID
   const handleDelete = id => {
-    axios.delete(`http://localhost:5000/api/projects/${id}`)
+    axios.delete(`https://portfolio-6-5icm.onrender.com/api/projects/${id}`)
       .then(() => {
         setProjects(prev => prev.filter(p => p.id !== id));
       })

@@ -6,7 +6,7 @@ export default function Home() {
   const [homeData, setHomeData] = useState([[], []]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/home')
+    axios.get('https://portfolio-6-5icm.onrender.com/api/home')
       .then(response => setHomeData(response.data))
       .catch(error => console.error('Error fetching the data:', error));
   }, []);
