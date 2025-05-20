@@ -3,8 +3,7 @@ const cors = require("cors");
 const fs = require("fs");
 
 const app = express();
-const port = process.env.PORT || 5000;
-
+const port = 5000;
 
 const projectsFile = 'projects.json';
 const contactsFile = 'contact.json';
@@ -76,7 +75,7 @@ app.delete("/api/projects/:id", (req, res) => {
   });
 
 // --- CONTACT ROUTE ---
-app.get("/portfolio-5yr2.onrender.com/contact", (req, res) => {
+app.get("/api/contact", (req, res) => {
   const contacts = readJSON(contactsFile);
   res.json(contacts);
 });
