@@ -76,7 +76,7 @@ app.delete("/api/projects/:id", (req, res) => {
   });
 
 // --- CONTACT ROUTE ---
-app.get("/api/contact", (req, res) => {
+app.get("/portfolio-5yr2.onrender.com/contact", (req, res) => {
   const contacts = readJSON(contactsFile);
   res.json(contacts);
 });
