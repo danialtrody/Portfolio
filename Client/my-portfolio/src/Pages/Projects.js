@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-// const API_BASE_URL = 'http://localhost:5000'
-const API_BASE_URL = "https://portfolio-6-5icm.onrender.com"
+const API_BASE_URL = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:5000'
+  : 'https://portfolio-6-5icm.onrender.com';
 
 
 
