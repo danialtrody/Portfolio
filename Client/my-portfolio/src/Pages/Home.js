@@ -3,7 +3,6 @@ import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 
 
-// const API_BASE_URL = 'http://localhost:5000'
 const API_BASE_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:5000'
   : 'https://portfolio-6-5icm.onrender.com';
