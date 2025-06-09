@@ -8,7 +8,7 @@ import Carousel from 'react-bootstrap/Carousel';
 //   : 'https://portfolio-5yr2.onrender.com';
   
 
-const API_BASE_URL = "https://portfolio-5yr2.onrender.com"
+const API_BASE_URL = "https://portfolio-6-5icm.onrender.com"
 
 export default function Home() {
   const [homeData, setHomeData] = useState([[], []]);
