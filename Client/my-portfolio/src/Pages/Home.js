@@ -3,12 +3,12 @@ import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 
 
-// const API_BASE_URL = process.env.NODE_ENV === 'development'
-//   ? 'http://localhost:5000'
-//   : 'https://portfolio-5yr2.onrender.com';
+const API_BASE_URL = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:5000'
+  : 'https://client-portfolio-lhpb.onrender.com';
   
 
-const API_BASE_URL = "https://portfolio-5yr2.onrender.com"
+// const API_BASE_URL = "https://portfolio-5yr2.onrender.com"
 
 export default function Home() {
   const [homeData, setHomeData] = useState([[], []]);
