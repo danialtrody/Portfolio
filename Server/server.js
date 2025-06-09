@@ -6,19 +6,19 @@ const app = express();
 const port = process.env.PORT || 5000;;
 
 
-// const { Pool } = require('pg');
-// require('dotenv').config();
+const { Pool } = require('pg');
+require('dotenv').config();
 
-// const pool = new Pool({
-//   user: process.env.DB_USER,
-//   host: process.env.DB_HOST,
-//   database: process.env.DB_NAME,
-//   password: process.env.DB_PASS,
-//   port: process.env.DB_PORT,
-//   ssl: {
-//     rejectUnauthorized: false
-//   }
-// });
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 
 const projectsFile = 'projects.json';
@@ -121,14 +121,14 @@ app.post("/api/contact", (req, res) => {
 
 
 
-// app.get('/users', async (req, res) => {
-//   try {
-//     const result = await pool.query('SELECT * FROM users');
-//     res.status(200).json(result.rows);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
+app.get('/users', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM users');
+    res.status(200).json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 
