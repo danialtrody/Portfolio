@@ -121,11 +121,11 @@ app.post("/api/contact", (req, res) => {
 
 
 
-app.get('/api/contact', async (req, res) => {
+app.get('/users', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users');
     res.status(200).json(result.rows);
-    console.log(result.rows);
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
