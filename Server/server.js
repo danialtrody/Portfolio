@@ -121,7 +121,7 @@ app.post("/api/contact", (req, res) => {
 
 
 
-app.get('/users', async (req, res) => {
+app.get('/api/contact', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users');
     res.status(200).json(result.rows);
