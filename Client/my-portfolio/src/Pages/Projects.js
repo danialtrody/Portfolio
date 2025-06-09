@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const API_BASE_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:5000'
-  : 'https://client-portfolio-lhpb.onrender.com';
+  : 'https://portfolio-6-5icm.onrender.com';
 
 
 
