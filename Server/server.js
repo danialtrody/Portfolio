@@ -5,6 +5,31 @@ const fs = require("fs");
 const app = express();
 const port = 5000;
 
+
+// const { Pool } = require('pg');
+
+// const pool = new Pool({
+//   user: 'postgres',
+//   host: 'localhost',
+//   database: 'postgres',
+//   password: '123321',
+//   port: 5432, // default PostgreSQL port
+// });
+
+require('dotenv').config();
+
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+
 const projectsFile = 'projects.json';
 const contactsFile = 'contact.json';
 const homeFile = 'home.json';
@@ -100,6 +125,21 @@ app.post("/api/contact", (req, res) => {
   writeJSON(customerRequest, existing);
   res.send('Saved successfully!');
 });
+
+
+
+
+
+app.get('/users', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM users');
+    res.status(200).json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 
 // --- START SERVER ---
 app.listen(port, () => {
