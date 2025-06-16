@@ -3,7 +3,18 @@ import axios from 'axios';
 
 
 
-const API_BASE_URL = 'http://localhost:5000' || "https://portfolio-6-5icm.onrender.com" ;
+let API_BASE_URL = "https://portfolio-6-5icm.onrender.com"; // default to Render
+
+// Try to ping local server
+await fetch("http://localhost:5000/ping")
+  .then((res) => {
+    if (res.ok) {
+      API_BASE_URL = "http://localhost:5000";
+    }
+  })
+  .catch(() => {
+    // Do nothing — use Render as fallback
+  });
 
 
 
