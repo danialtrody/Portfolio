@@ -173,18 +173,3 @@ app.listen(port, () => {
 
 
 
-
-// // --- Helper to read JSON files ---
-// function readJSON(filePath) {
-//   if (!fs.existsSync(filePath)) {
-//     fs.writeFileSync(filePath, JSON.stringify([])); // initialize empty array if file doesn't exist
-//   }
-//   const data = fs.readFileSync(filePath);
-//   return JSON.parse(data);
-// }
-// // --- Helper to write JSON files ---
-// function writeJSON(filePath, data) {
-//   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-// }
-
-

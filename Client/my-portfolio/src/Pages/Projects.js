@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
-// const API_BASE_URL = 'http://localhost:5000';
-const API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
+
+const API_BASE_URL = 'http://localhost:5000' || "https://portfolio-6-5icm.onrender.com" ;
+
 
 
 
@@ -143,18 +144,17 @@ export default function Projects() {
                     </h6>
                     <p>{project.description}</p>
                     <a href={project.github} className="card-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    {project.demo && (
-                      <a href={project.demo} className="card-link" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                    )}
+          
                   </div>
                   <div className="card-footer d-flex justify-content-between align-items-center">
                   <small className="text-muted">
-                      {project.updatedAt 
-                        ? `Updated: ${new Date(project.updatedAt).toLocaleString()}` 
-                        : project.createdAt
-                        ? `Created: ${new Date(project.createdAt).toLocaleString()}`
-                        : 'Date not provided'}
-                   </small>   
+                        {project.updated_at
+                          ? `Updated: ${new Date(project.updated_at).toLocaleString()}`
+                          : project.created_at
+                          ? `Created: ${new Date(project.created_at).toLocaleString()}`
+                          : 'Date not provided'}
+                      </small>
+ 
                       <div className="d-flex gap-2">
                       <button className="btn btn-sm btn-outline-primary" onClick={() => handleEdit(project)}>Edit</button>
                       <button className="btn btn-sm btn-danger" onClick={() => handleDelete(project.id)}>Delete</button>
@@ -189,18 +189,16 @@ export default function Projects() {
                     </h6>
                     <p>{project.description}</p>
                     <a href={project.github} className="card-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    {project.demo && (
-                      <a href={project.demo} className="card-link" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                    )}
                   </div>
                   <div className="card-footer">
-                    <small className="text-muted">
-                      {project.updatedAt 
-                        ? `Updated: ${new Date(project.updatedAt).toLocaleString()}` 
-                        : project.createdAt
-                        ? `Created: ${new Date(project.createdAt).toLocaleString()}`
-                        : 'Date not provided'}
-                    </small>
+                  <small className="text-muted">
+                    {project.updated_at
+                      ? `Updated: ${new Date(project.updated_at).toLocaleString()}`
+                      : project.created_at
+                      ? `Created: ${new Date(project.created_at).toLocaleString()}`
+                      : 'Date not provided'}
+                  </small>
+
                   </div>
                 </div>
               </div>
