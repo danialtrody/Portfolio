@@ -1,133 +1,166 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
+const pool = require("./db");
 
 const app = express();
-const port = process.env.PORT || 5000;;
-
-
-const { Pool } = require('pg');
-require('dotenv').config();
-
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
-  port: process.env.DB_PORT,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-
-
-const projectsFile = 'projects.json';
-const contactsFile = 'contact.json';
-const homeFile = 'home.json';
-const customerRequest = "customerRequest.json"
+const port = 5000;
 
 app.use(cors());
-app.use(express.json()); // Allow JSON body parsing
-
-// --- Helper to read JSON files ---
-function readJSON(filePath) {
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, JSON.stringify([])); // initialize empty array if file doesn't exist
-  }
-  const data = fs.readFileSync(filePath);
-  return JSON.parse(data);
-}
-
-// --- Helper to write JSON files ---
-function writeJSON(filePath, data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-}
-
-// --- PROJECTS ROUTES ---
-app.get("/api/projects", (req, res) => {
-  const projects = readJSON(projectsFile);
-  res.json(projects);
-});
-
-app.post("/api/projects", (req, res) => {
-  const projects = readJSON(projectsFile);
-  const newProject = { id: Date.now(),
-    createdAt: new Date().toISOString() ,
-     ...req.body };
-  projects.push(newProject);
-  writeJSON(projectsFile, projects);
-  res.status(201).json(newProject);
-});
-
-// DELETE מחיקת פרויקט לפי ID
-app.delete("/api/projects/:id", (req, res) => {
-    const id = parseInt(req.params.id);
-    let projects = readJSON(projectsFile);
-    const exists = projects.some(p => p.id === id);
-    if (!exists) {
-      return res.status(404).json({ error: "Project not found" });
-    }
-    projects = projects.filter(project => project.id !== id);
-    writeJSON(projectsFile, projects);
-    res.status(200).json({ message: "Project deleted" });
-  });
-  
-  // PUT עדכון פרויקט לפי ID
-  app.put("/api/projects/:id", (req, res) => {
-    const id = parseInt(req.params.id);
-    let projects = readJSON(projectsFile);
-    const index = projects.findIndex(p => p.id === id);
-    if (index === -1) {
-      return res.status(404).json({ error: "Project not found" });
-    }
-    const updatedProject = {
-        ...projects[index],
-        ...req.body,
-        updatedAt: new Date().toISOString()  // מוסיפים תאריך עדכון
-      };
-    projects[index] = updatedProject;
-    writeJSON(projectsFile, projects);
-    res.json(updatedProject);
-  });
+app.use(express.json()); 
 
 
-// --- HOME ROUTE ---
-app.get("/api/home", (req, res) => {
-  const home = readJSON(homeFile);
-  res.json(home);
-});
+//Contact page
 
-
-
-// --- CONTACT ROUTE ---
-app.get("/api/contact", (req, res) => {
-  const contacts = readJSON(contactsFile);
-  res.json(contacts);
-});
-
-
-app.post("/api/contact", (req, res) => {
-  const newData = req.body;
-  const existing = readJSON(customerRequest);
-  existing.push({
-    id: Date.now(),
-    ...newData
-  });
-  writeJSON(customerRequest, existing);
-  res.send('Saved successfully!');
-});
-
-
-
-
-
-app.get('/contact', async (req, res) => {
+app.get("/api/contact", async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM users');
-    res.status(200).json(result.rows);
-    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+    const result = await pool.query(`
+      SELECT contact.*, users.name
+      FROM contact
+      JOIN users ON contact.id = users.id
+    `);
+
+    res.json(result.rows);
   } catch (err) {
+    console.error("Error fetching projects:", err.message);
     res.status(500).json({ error: err.message });
+  }
+});
+
+app.post("/api/contact", async (req, res) => {
+  const { firstname, lastname, email, country, subject } = req.body;
+
+  try {
+    const result = await pool.query(
+      `INSERT INTO customer_request (firstname, lastname, email, country, subject)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING *`,
+      [firstname, lastname, email, country, subject]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error("Error inserting contact data:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+
+//Project page
+
+app.get("/api/projects", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM projects ORDER BY created_at DESC"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching projects:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post("/api/projects", async (req, res) => {
+  const { user_id, title, description, technologies, github, image } = req.body;
+  try {
+    const result = await pool.query(
+      `INSERT INTO projects
+      (user_id, title, description, technologies, github, image)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING *`,
+      [user_id, title, description, technologies, github, image]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error("Error inserting project:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete("/api/projects/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const result = await pool.query("DELETE FROM projects WHERE id = $1 RETURNING *", [id]);
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+    res.status(200).json({ message: "Project deleted" });
+  } catch (err) {
+    console.error("Error deleting project:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put("/api/projects/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  const { title, description, technologies, github, image } = req.body;
+  try {
+    const result = await pool.query(
+      `UPDATE projects SET
+        title = $1,
+        description = $2,
+        technologies = $3,
+        github = $4,
+        image = $5,
+        updated_at = NOW()
+       WHERE id = $6
+       RETURNING *`,
+      [title, description, technologies, github, image, id]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Error updating project:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+//Home page
+
+app.get("/api/home", async (req, res) => {
+  try {
+    const users = await pool.query(`
+      SELECT users_card.*, users.name
+      FROM users_card
+      JOIN users ON users_card.id = users.id
+    `);
+    
+    const media = await pool.query("SELECT * FROM media");
+
+    res.json([media.rows, users.rows]); // still matches frontend expectations
+  } catch (err) {
+    console.error("Error fetching home data:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+
+
+app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const result = await pool.query(
+      "SELECT * FROM users WHERE email = $1 AND password = $2",
+      [email, password]
+    );
+
+    if (result.rows.length === 1) {
+      res.status(200).json({
+        success: true, // ✅ Add this line
+        message: "Login successful",
+        user: result.rows[0]
+      });
+    } else {
+      res.status(401).json({ success: false, error: "Invalid credentials" }); // ✅ Add success: false
+    }
+  } catch (err) {
+    console.error("Error during login:", err.message);
+    res.status(500).json({ success: false, error: "Internal server error" });
   }
 });
 
@@ -137,3 +170,21 @@ app.get('/contact', async (req, res) => {
 app.listen(port, () => {
   console.log(`✅ Server running at http://localhost:${port}`);
 });
+
+
+
+
+// // --- Helper to read JSON files ---
+// function readJSON(filePath) {
+//   if (!fs.existsSync(filePath)) {
+//     fs.writeFileSync(filePath, JSON.stringify([])); // initialize empty array if file doesn't exist
+//   }
+//   const data = fs.readFileSync(filePath);
+//   return JSON.parse(data);
+// }
+// // --- Helper to write JSON files ---
+// function writeJSON(filePath, data) {
+//   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+// }
+
+

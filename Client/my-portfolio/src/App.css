@@ -155,3 +155,11 @@
 .mb-5 {
   background-color: #ffffff00;
 }
+
+
+.card.mx-auto.shadow.p-4{
+  background-color: unset !important;
+  margin-bottom: 200px !important;
+  margin-top: 50px;
+
+}

@@ -3,10 +3,11 @@ import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 
 
-const API_BASE_URL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:5000'
-  : 'https://portfolio-6-5icm.onrender.com';
-  
+
+
+// const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
+
 
 
 export default function Home() {
@@ -52,8 +53,18 @@ export default function Home() {
                 />
                 <h4 className="card-title">{member.name}</h4>
                 <p className="text-muted mb-2">{member.about}</p>
-                <p><strong>Skills:</strong> {member.skills?.join(', ')}</p>
-                <p><strong>Interests:</strong> {member.interests?.join(', ')}</p>
+                <p><strong>Skills:</strong> {
+                  Array.isArray(member.skills)
+                    ? member.skills.join(', ')
+                    : member.skills
+                }</p>
+
+                <p><strong>Interests:</strong> {
+                  Array.isArray(member.interests)
+                    ? member.interests.join(', ')
+                    : member.interests
+                }</p>
+
               </div>
             </div>
           </div>
