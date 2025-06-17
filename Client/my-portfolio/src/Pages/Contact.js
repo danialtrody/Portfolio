@@ -75,6 +75,8 @@ export default function Contact() {
         />
       </div>
 
+      <h1 className="get-touch">Get touch with us!</h1>
+      
       <div className='contact-page'>
         {/* Contact form component with props to control inputs and submission */}
         <ContactForm 

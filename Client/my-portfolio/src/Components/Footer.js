@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 
 export default function Footer({ disabled }) {
   const handleDisabledClick = (e) => {
-    if (disabled) e.preventDefault();
+    if (disabled) {
+      e.preventDefault(); 
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" }); 
+    }
   };
+
 
   return (
     <footer className="text-center text-lg-start bg-body-tertiary text-muted" style={disabled ? { pointerEvents: 'none', opacity: 0.6 } : {}}>

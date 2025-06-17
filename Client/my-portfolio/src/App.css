@@ -163,3 +163,33 @@
   margin-top: 50px;
 
 }
+
+h3.bg-dark.bg-opacity-50.p-2.rounded {
+  overflow: hidden;            /* Hide overflowing text */
+  white-space: nowrap;         /* Prevent wrapping */
+  border-right: 2px solid;     /* Optional: cursor effect */
+  width: 0;
+  animation: typing 3s steps(45) infinite forwards; /* Animate width from 0 to full */
+  border: 0 !important;
+}
+
+@keyframes typing {
+  to {
+    width: 45ch;
+  }
+}
+
+.carousel-caption {
+  display: flex;
+  justify-content: center;
+}
+
+h3.bg-dark.bg-opacity-50.p-2.rounded {
+  background-color: unset !important;
+}
+
+.get-touch{
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'Courier New', Courier, monospace;
+}
