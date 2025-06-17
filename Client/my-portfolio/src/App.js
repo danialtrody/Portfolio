@@ -8,9 +8,11 @@ import Footer from "./Components/Footer";
 import Resume from "./Pages/Resume";
 import Login from "./Pages/Login";
 import "./App.css";
+import { AuthProvider } from "../src/Components/AuthContext";
 
 function LayoutWrapper() {
   const location = useLocation();
+  // Determine if the current page is the login page ("/")
   const isLoginPage = location.pathname === "/";
 
   const backgroundStyle = {
@@ -19,19 +21,26 @@ function LayoutWrapper() {
 
   return (
     <div style={backgroundStyle}>
+      {/* Navbar component, disable it on login page */}
       <Navbar disabled={isLoginPage} />
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/resume" element={<Resume />} />
-      </Routes>
+      {/* Provide authentication context to child components */}
+      <AuthProvider>
+        {/* Define routes for different pages */}
+        <Routes>
+          <Route path="/" element={<Login />} />          {/* Login page */}
+          <Route path="/home" element={<Home />} />        {/* Home page */}
+          <Route path="/projects" element={<Projects />} />{/* Projects page */}
+          <Route path="/contact" element={<Contact />} />  {/* Contact page */}
+          <Route path="/resume" element={<Resume />} />    {/* Resume page */}
+        </Routes>
+      </AuthProvider>
+      {/* Footer component, disable it on login page */}
       <Footer disabled={isLoginPage} />
     </div>
   );
 }
 
+// Main App component which wraps LayoutWrapper inside Router for routing support
 function App() {
   return (
     <Router>
