@@ -185,10 +185,13 @@ app.get("/api/icons", async (req, res) => {
 
 app.get("/api/news", async (req, res) => {
   try {
+    // const response = await fetch(
+    //   "https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=10&apiKey=01f006f884ae4bfb8d285227de608c92"
+    // );
     const response = await fetch(
-      "https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=10&apiKey=01f006f884ae4bfb8d285227de608c92"
+      "https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=10&apiKey=01f006f884ae4bfb8d285227de608c92"
     );
-
+    
     if (!response.ok) {
       throw new Error(`NewsAPI error: ${response.statusText}`);
     }
