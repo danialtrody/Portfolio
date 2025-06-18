@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
+const { fetch } = require('undici');
+
+
+
 
 
 
@@ -194,8 +198,8 @@ app.get("/api/news", async (req, res) => {
       throw new Error(`NewsAPI error: ${response.statusText}`);
     }
 
-    const data = await response.json();     
-    res.json(data);         
+    const data = await response.json();
+    res.json(data);
   } catch (error) {
     console.error("News fetch error:", error.message);
     res.status(500).json({ error: "Failed to fetch news" });
