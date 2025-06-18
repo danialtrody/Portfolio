@@ -164,7 +164,16 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-
+app.get("/api/icons", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT id, name, icon FROM tech_icons ORDER BY id");
+    console.log(result.rows)
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching icons:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // --- START SERVER ---
 app.listen(port, () => {

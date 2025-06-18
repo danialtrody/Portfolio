@@ -3,29 +3,38 @@ import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 
 // Default API URL points to the Render server deployment
-let API_BASE_URL = "https://portfolio-6-5icm.onrender.com";
+// let API_BASE_URL = "https://portfolio-6-5icm.onrender.com";
 
 // Attempt to ping the local backend server and switch to it if available
-await fetch("http://localhost:5000/ping")
-  .then((res) => {
-    if (res.ok) {
-      API_BASE_URL = "http://localhost:5000"; // Use local server if reachable
-    }
-  })
-  .catch(() => {
-  });
+// await fetch("http://localhost:5000/ping")
+//   .then((res) => {
+//     if (res.ok) {
+//       API_BASE_URL = "http://localhost:5000"; // Use local server if reachable
+//     }
+//   })
+//   .catch(() => {
+//   });
+  let API_BASE_URL = "http://localhost:5000"; // Use local server if reachable
 
 export default function Home() {
   // State to hold home page data: [carouselItems, teamMembers]
-  const [homeData, setHomeData] = useState([[], []]);
+  const [homeData, setHomeData] = useState([[], []]); // media, users
+  const [icons, setIcons] = useState([]); // tech icons
 
   useEffect(() => {
+    // Fetch home content
     axios.get(`${API_BASE_URL}/api/home`)
-      .then(response => setHomeData(response.data)) 
-      .catch(error => console.error('Error fetching the data:', error)); 
+      .then(response => setHomeData(response.data))
+      .catch(error => console.error('Error fetching home data:', error));
+
+    // Fetch tech icons
+    axios.get(`${API_BASE_URL}/api/icons`)
+      .then(response => setIcons(response.data))
+      .catch(error => console.error('Error fetching icons:', error));
   }, []);
 
   return (
+    <>
     <div className="container mt-5">
       <Carousel>
         {homeData[0]?.map((item, index) => (
@@ -81,5 +90,39 @@ export default function Home() {
         ))}
       </div>
     </div>
+    <h2 className="text-center mt-5 mb-4">Technologies We Use</h2>
+<div className="d-flex flex-wrap justify-content-center gap-4 mb-5">
+  {icons.map(icon => (
+    <div
+      key={icon.id}
+      className="text-center p-3 rounded shadow-sm"
+      style={{
+        width: '120px',
+        backgroundColor: '#f8f9fa',
+        transition: 'transform 0.3s, box-shadow 0.3s',
+        border: '1px solid #e0e0e0',
+        cursor: 'pointer'
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.transform = 'scale(1.05)';
+        e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.transform = 'scale(1)';
+        e.currentTarget.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.05)';
+      }}
+    >
+      <img
+        src={icon.icon}
+        alt={icon.name}
+        style={{ width: '64px', height: '64px', objectFit: 'contain' }}
+      />
+      <p className="mt-2 mb-0" style={{ fontWeight: '500' }}>{icon.name}</p>
+    </div>
+  ))}
+</div>
+
+
+</>
   );
 }
