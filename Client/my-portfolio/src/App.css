@@ -193,3 +193,13 @@ h3.bg-dark.bg-opacity-50.p-2.rounded {
   margin-top: 10px;
   font-family: 'Courier New', Courier, monospace;
 }
+
+
+.mb-5 {
+  width: 50%;
+  margin: auto;
+}
+
+.text-center.p-3.rounded.shadow-sm {
+  cursor: unset !important;
+}

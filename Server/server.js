@@ -138,7 +138,7 @@ app.get("/api/home", async (req, res) => {
 });
 
 
-
+//login page
 
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
@@ -164,10 +164,13 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+
+
+//icons
+
 app.get("/api/icons", async (req, res) => {
   try {
     const result = await pool.query("SELECT id, name, icon FROM tech_icons ORDER BY id");
-    console.log(result.rows)
     res.json(result.rows);
   } catch (err) {
     console.error("Error fetching icons:", err.message);
