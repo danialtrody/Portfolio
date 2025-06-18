@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar({ disabled }) {
+  const collapseRef = useRef();
+
   const handleDisabledClick = (e) => {
     if (disabled) {
       e.preventDefault();
+    } else {
+      // Collapse the navbar if it's open (mobile)
+      if (collapseRef.current && window.innerWidth < 992) {
+        const bsCollapse = new window.bootstrap.Collapse(collapseRef.current, {
+          toggle: false
+        });
+        bsCollapse.hide();
+      }
     }
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark" style={disabled ? { pointerEvents: 'none', opacity: 0.6 } : {}}>
+    <nav
+      className="navbar navbar-expand-lg bg-primary"
+      data-bs-theme="dark"
+      style={disabled ? { pointerEvents: "none", opacity: 0.6 } : {}}
+    >
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/" onClick={handleDisabledClick}>Navbar</Link>
+        <Link className="navbar-brand" to="/" onClick={handleDisabledClick}>
+          Navbar
+        </Link>
 
-        {/* Navbar Toggler for mobile */}
         <button
           className="navbar-toggler"
           type="button"
@@ -26,11 +41,16 @@ export default function Navbar({ disabled }) {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Collapsible Navbar content */}
-        <div className="collapse navbar-collapse" id="navbarColor01">
+        <div
+          className="collapse navbar-collapse"
+          id="navbarColor01"
+          ref={collapseRef}
+        >
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/" onClick={handleDisabledClick}>Login</Link>
+              <Link className="nav-link" to="/" onClick={handleDisabledClick}>
+                Login
+              </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link active" to="/home" onClick={handleDisabledClick}>
@@ -38,13 +58,19 @@ export default function Navbar({ disabled }) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/projects" onClick={handleDisabledClick}>Projects</Link>
+              <Link className="nav-link" to="/projects" onClick={handleDisabledClick}>
+                Projects
+              </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contact" onClick={handleDisabledClick}>Contact</Link>
+              <Link className="nav-link" to="/contact" onClick={handleDisabledClick}>
+                Contact
+              </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/resume" onClick={handleDisabledClick}>Resume</Link>
+              <Link className="nav-link" to="/resume" onClick={handleDisabledClick}>
+                Resume
+              </Link>
             </li>
           </ul>
         </div>
