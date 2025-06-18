@@ -3,18 +3,10 @@ import axios from 'axios';
 import ContactForm from "../Components/Contact_Form";
 import "../Components/Contact_Form_Style.css";
 
-// Default API base URL points to the deployed Render server
-let API_BASE_URL = "https://portfolio-6-5icm.onrender.com";
+// let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
+let API_BASE_URL = 'http://localhost:5000'
 
-// Attempt to ping the local backend server and switch to it if available
-await fetch("http://localhost:5000/ping")
-  .then((res) => {
-    if (res.ok) {
-      API_BASE_URL = "http://localhost:5000"; // Use local server if reachable
-    }
-  })
-  .catch(() => {
-  });
+
 
 export default function Contact() {
   // State to store contact data fetched from backend API

@@ -3,16 +3,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Components/AuthContext';
 
-let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
-// Default API URL points to Render (cloud server)
+// let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
+let API_BASE_URL = 'http://localhost:5000'
 
-(async () => {
-  try {
-    const res = await fetch('http://localhost:5000/ping');
-    if (res.ok) API_BASE_URL = 'http://localhost:5000';
-    // If local backend server is running, use it instead
-  } catch {}
-})();
+
 
 export default function Login() {
   const [email, setEmail] = useState('');

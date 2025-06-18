@@ -2,16 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'; 
 import { useAuth } from '../Components/AuthContext'; 
 
-let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com'; 
 
-(async () => {
-  try {
-    const res = await fetch('http://localhost:5000/ping'); 
-    // Try to ping local server to check if it is running
-    if (res.ok) API_BASE_URL = 'http://localhost:5000'; 
-    // If local server responds successfully, use local API URL
-  } catch {}
-})();
+// let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
+let API_BASE_URL = 'http://localhost:5000'
+
+
 
 export default function Projects() { 
   const { isAdmin } = useAuth(); 

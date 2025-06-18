@@ -2,20 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 
-// Default API URL points to the Render server deployment
-let API_BASE_URL = "https://portfolio-6-5icm.onrender.com";
+// let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
+let API_BASE_URL = 'http://localhost:5000'
 
-// Attempt to ping the local backend server and switch to it if available
-await fetch("http://localhost:5000/ping")
-  .then((res) => {
-    if (res.ok) {
-      API_BASE_URL = "http://localhost:5000"; // Use local server if reachable
-    }
-  })
-  .catch(() => {
-  });
-
-                              
+                      
 
 
 export default function Home() {

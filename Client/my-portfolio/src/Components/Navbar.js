@@ -72,6 +72,11 @@ export default function Navbar({ disabled }) {
                 Resume
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/news" onClick={handleDisabledClick}>
+                News
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

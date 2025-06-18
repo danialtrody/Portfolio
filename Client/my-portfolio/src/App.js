@@ -7,6 +7,7 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Resume from "./Pages/Resume";
 import Login from "./Pages/Login";
+import News from "./Pages/News"
 import "./App.css";
 import { AuthProvider } from "../src/Components/AuthContext";
 
@@ -32,6 +33,7 @@ function LayoutWrapper() {
           <Route path="/projects" element={<Projects />} />{/* Projects page */}
           <Route path="/contact" element={<Contact />} />  {/* Contact page */}
           <Route path="/resume" element={<Resume />} />    {/* Resume page */}
+          <Route path="/news" element={<News />} />    {/* News page */}
         </Routes>
       </AuthProvider>
       {/* Footer component, disable it on login page */}

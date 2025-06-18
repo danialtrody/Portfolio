@@ -61,6 +61,7 @@ export default function Footer({ disabled }) {
               <p><Link to="/projects" onClick={handleDisabledClick} className="text-reset">Projects</Link></p>
               <p><Link to="/contact" onClick={handleDisabledClick} className="text-reset">Contact</Link></p>
               <p><Link to="/resume" onClick={handleDisabledClick} className="text-reset">Resume</Link></p>
+              <p><Link to="/news" onClick={handleDisabledClick} className="text-reset">News</Link></p>
             </div>
 
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
