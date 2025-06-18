@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 
+
+
 const pool = require("./db");
 
 const app = express();
@@ -9,9 +11,6 @@ const port = 5000;
 
 app.use(cors());
 app.use(express.json()); 
-
-
-
 
 
 
@@ -190,7 +189,6 @@ app.get("/api/news", async (req, res) => {
     const response = await fetch(
       "https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=10&apiKey=01f006f884ae4bfb8d285227de608c92"
     );
-
 
     if (!response.ok) {
       throw new Error(`NewsAPI error: ${response.statusText}`);
