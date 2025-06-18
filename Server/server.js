@@ -8,10 +8,7 @@ const pool = require("./db");
 const app = express();
 const port = 5000;
 
-app.use(cors({
-  origin: ["http://localhost:3000", "https://portfolio-5yr2.onrender.com"]
-}));
-
+app.use(cors());
 app.use(express.json()); 
 
 
