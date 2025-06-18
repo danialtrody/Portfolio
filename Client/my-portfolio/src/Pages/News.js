@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./News.css";
 
-function NewsTech() {
+
+let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
+// let API_BASE_URL = 'http://localhost:5000'
+
+
+function News() {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState(null);
   const [columns, setColumns] = useState(1);
@@ -10,9 +15,7 @@ function NewsTech() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get(
-          "https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=10&apiKey=01f006f884ae4bfb8d285227de608c92"
-        );
+        const response = await axios.get(`${API_BASE_URL}/api/new`);
         setArticles(response.data.articles);
       } catch (err) {
         console.error("Error fetching tech news:", err);
@@ -83,4 +86,4 @@ function NewsTech() {
   );
 }
 
-export default NewsTech;
+export default News;

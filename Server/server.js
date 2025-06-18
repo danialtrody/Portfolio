@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
+
 const pool = require("./db");
 
 const app = express();
@@ -179,6 +180,28 @@ app.get("/api/icons", async (req, res) => {
   } catch (err) {
     console.error("Error fetching icons:", err.message);
     res.status(500).json({ error: err.message });
+  }
+});
+
+
+
+app.get("/api/news", async (req, res) => {
+  try {
+    const response = await fetch(
+      "https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=10&apiKey=01f006f884ae4bfb8d285227de608c92"
+    );
+
+
+    if (!response.ok) {
+      throw new Error(`NewsAPI error: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    console.log(data);       
+    res.json(data);         
+  } catch (error) {
+    console.error("News fetch error:", error.message);
+    res.status(500).json({ error: "Failed to fetch news" });
   }
 });
 
