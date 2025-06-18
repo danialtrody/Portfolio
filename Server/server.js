@@ -184,25 +184,6 @@ app.get("/api/icons", async (req, res) => {
 
 
 
-app.get("/api/tech-news", async (req, res) => {
-  const apiKey = process.env.GNEWS_API_KEY;
-  const url = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=a95f25e3b02245aa8a9240c8b87475a3`;
-
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    console.log("GNews response:", data); // for debugging
-
-    res.json(data.articles);
-  } catch (error) {
-    console.error("Tech news fetch error:", error.message);
-    res.status(500).json({ error: "Tech news fetch failed" });
-  }
-});
-
-
-
 // --- START SERVER ---
 app.listen(port, () => {
   console.log(`✅ Server running at http://localhost:${port}`);
