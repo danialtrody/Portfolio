@@ -15,7 +15,7 @@ function News() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/api/new`);
+        const response = await axios.get(`${API_BASE_URL}/api/news`);
         setArticles(response.data.articles);
       } catch (err) {
         console.error("Error fetching tech news:", err);

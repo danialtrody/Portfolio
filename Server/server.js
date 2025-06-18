@@ -196,8 +196,7 @@ app.get("/api/news", async (req, res) => {
       throw new Error(`NewsAPI error: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    console.log(data);       
+    const data = await response.json();     
     res.json(data);         
   } catch (error) {
     console.error("News fetch error:", error.message);
