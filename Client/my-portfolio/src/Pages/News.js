@@ -3,8 +3,10 @@ import axios from "axios";
 import "./News.css";
 
 
-let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
+// let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
 // let API_BASE_URL = 'http://localhost:5000'
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
 
 
 function News() {
