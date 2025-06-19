@@ -186,6 +186,7 @@ app.get("/api/icons", async (req, res) => {
 
 app.get("/api/news", async (req, res) => {
   try {
+    
     const response = await fetch("https://dev.to/api/articles?tag=technology");
 
     if (!response.ok) {
