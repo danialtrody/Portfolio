@@ -185,7 +185,6 @@ app.get("/api/icons", async (req, res) => {
 
 app.get("/api/news", async (req, res) => {
   try {
-    console.log("🔍 Fetching news from NewsAPI...");
     const response = await fetch(
       "https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=01f006f884ae4bfb8d285227de608c92"
     );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./News.css";
 
+
 let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
 // let API_BASE_URL = 'http://localhost:5000'
 
