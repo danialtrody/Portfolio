@@ -3,15 +3,10 @@ import axios from 'axios';
 import ContactForm from "../Components/Contact_Form";
 import "../Components/Contact_Form_Style.css";
 
-<<<<<<< HEAD
-// let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
-let API_BASE_URL = 'http://localhost:5000'
-=======
-
 let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
 // let API_BASE_URL = 'http://localhost:5000'
 
->>>>>>> 665b9a10c411d9cabcf229f550303fe0d8125504
+
 
 
 export default function Contact() {
