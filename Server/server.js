@@ -4,6 +4,7 @@ const fs = require("fs");
 const { fetch } = require('undici');
 
 const pool = require("./db");
+const { Console } = require("console");
 
 const app = express();
 const port = 5000;
@@ -185,28 +186,23 @@ app.get("/api/icons", async (req, res) => {
 
 app.get("/api/news", async (req, res) => {
   try {
-    const response = await fetch(
-      "https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=01f006f884ae4bfb8d285227de608c92"
-    );
+    const response = await fetch("https://dev.to/api/articles?tag=technology");
 
     if (!response.ok) {
-      throw new Error(`NewsAPI error: ${response.statusText}`);
+      throw new Error(`Dev.to API error: ${response.statusText}`);
     }
 
     const data = await response.json();
-    res.json(data);
+
+    res.json({ articles: data }); // ✅ IMPORTANT: wrap in articles key
   } catch (error) {
-    console.error("News fetch error:", error.message);
-    res.status(500).json({ error: "Failed to fetch news" });
+    console.error("Dev.to fetch error:", error.message);
+    res.status(500).json({ error: "Failed to fetch tech news" });
   }
 });
-
 
 
 // --- START SERVER ---
 app.listen(port, () => {
   console.log(`✅ Server running at http://localhost:${port}`);
 });
-
-
-

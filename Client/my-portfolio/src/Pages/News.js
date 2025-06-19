@@ -6,8 +6,6 @@ import "./News.css";
 let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
 // let API_BASE_URL = 'http://localhost:5000'
 
-// const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
-
 
 function News() {
   const [articles, setArticles] = useState([]);
@@ -65,9 +63,9 @@ function News() {
             key={index}
             className="news-tech-card"
           >
-            {article.urlToImage && (
+            {article.cover_image && (
               <img
-                src={article.urlToImage}
+                src={article.cover_image}
                 alt={article.title}
                 className="news-tech-image"
               />
@@ -78,8 +76,11 @@ function News() {
                 {article.description || "No description available."}
               </p>
               <small className="news-tech-date">
-                {new Date(article.publishedAt).toLocaleString()}
+                {new Date(article.published_at).toLocaleString()}
               </small>
+              <p className="news-tech-author">
+                👤 By: {article.user?.name || "Unknown"}
+              </p>
             </div>
           </a>
         ))}
@@ -88,4 +89,4 @@ function News() {
   );
 }
 
-export default News;
+export default News;
