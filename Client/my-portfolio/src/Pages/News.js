@@ -3,7 +3,7 @@ import axios from "axios";
 import "./News.css";
 
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+const API_BASE_URL = "https://portfolio-6-5icm.onrender.com" || 'http://localhost:5000';
 
 function News() {
   const [articles, setArticles] = useState([]);
