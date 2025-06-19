@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./News.css";
 
+<<<<<<< HEAD
 let API_BASE_URL = 'http://localhost:5000'
+=======
+
+let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
+// let API_BASE_URL = 'http://localhost:5000'
+
+>>>>>>> a8c2b4b7281c46ad07a9c891a08680996a0cc51b
 
 function News() {
   const [articles, setArticles] = useState([]);
@@ -86,4 +93,4 @@ function News() {
   );
 }
 
-export default News;
+export default News;
