@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./News.css";
 
-
-const API_BASE_URL = "https://portfolio-6-5icm.onrender.com" || 'http://localhost:5000';
+// const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = "https://portfolio-6-5icm.onrender.com" 
 
 function News() {
   const [articles, setArticles] = useState([]);
