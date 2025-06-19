@@ -1,29 +1,33 @@
-// db.js
-// const { Pool } = require("pg");
+const { Pool } = require('pg');
+require('dotenv').config();
 
-// const pool = new Pool({
-//   user: "postgres",
-//   host: "localhost",
-//   database: "portfolio_v",
-//   password: "123456789",    
-//   port: 5432
-// });
+function createDBConnection() {
+  const env = process.env.NODE_ENV || 'development';  // 'development' or 'production'
 
-// module.exports = pool;
+  let pool;
 
+  if (env === 'development') {
+    // Local DB connection
+    pool = new Pool({
+      user: process.env.LOCAL_DB_USER,
+      host: process.env.LOCAL_DB_HOST,
+      database: process.env.LOCAL_DB_NAME,
+      password: process.env.LOCAL_DB_PASSWORD,
+      port: process.env.LOCAL_DB_PORT,
+    });
+  } else {
+    // Production DB connection (on Render)
+    pool = new Pool({
+      user: process.env.DB_USER,
+      host: process.env.DB_HOST,
+      database: process.env.DB_NAME,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DB_PORT,
+      ssl: { rejectUnauthorized: false }, // Required for Render's SSL
+    });
+  }
 
-const { Pool } = require("pg");
+  return pool;
+}
 
-const pool = new Pool({
-  user: "d_4xt7_user",
-  host: "dpg-d182em8dl3ps738neskg-a.oregon-postgres.render.com",
-  database: "d_4xt7",
-  password: "RtI1VzF2QVkyVNcK2ZRrkXEjaM9G7Rhq",
-  port: 5432,
-  ssl: {
-    rejectUnauthorized: false, // Required for Render's self-signed certs
-  },
-});
-
-module.exports = pool;
-
+module.exports = createDBConnection();

@@ -3,11 +3,7 @@ import axios from 'axios';
 import ContactForm from "../Components/Contact_Form";
 import "../Components/Contact_Form_Style.css";
 
-let API_BASE_URL = 'https://portfolio-6-5icm.onrender.com';
-// let API_BASE_URL = 'http://localhost:5000'
-
-
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
 
 export default function Contact() {
   // State to store contact data fetched from backend API
