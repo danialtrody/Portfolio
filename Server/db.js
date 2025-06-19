@@ -27,7 +27,17 @@ function createDBConnection() {
     });
   }
 
+  
+  console.log("Connecting to DB with config:", {
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER
+  });
+  
+
   return pool;
+
+
 }
 
 module.exports = createDBConnection();
