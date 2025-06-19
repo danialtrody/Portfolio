@@ -186,7 +186,7 @@ app.get("/api/icons", async (req, res) => {
 
 app.get("/api/news", async (req, res) => {
   try {
-    const response = await fetch("https://dev.to/api/articles?tag=technology");
+    const response = await fetch("https://dev.to/api/articles?tag=technology&per_page=10");
 
     if (!response.ok) {
       throw new Error(`Dev.to API error: ${response.statusText}`);
