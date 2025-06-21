@@ -11,8 +11,8 @@ const { Console } = require("console");
 
 
 const app = express();
-// const port = 5000;
-const port = process.env.PORT || 5000;
+const port = 5000;
+// const port = process.env.PORT || 5000;
 
 
 app.use(cors());
