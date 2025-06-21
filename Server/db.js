@@ -3,7 +3,7 @@ require('dotenv').config();  // Load environment variables from .env
 
 // Function to create a PostgreSQL pool based on the environment
 function createDBConnection() {
-    const environment = process.env.NODE_ENV || 'localdb';  // default to 'local' if NODE_ENV is not set
+    const environment = process.env.NODE_ENV || 'renderdb';  // default to 'local' if NODE_ENV is not set
     // REACT_APP_API_BASE_URL="https://portfolio-6-5icm.onrender.com"
     let pool;
 
