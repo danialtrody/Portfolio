@@ -63,13 +63,17 @@ function News() {
             key={index}
             className="news-tech-card"
           >
-            {article.cover_image && (
-              <img
-                src={article.cover_image}
-                alt={article.title}
-                className="news-tech-image"
-              />
-            )}
+          <img
+            src={
+              article.cover_image?.trim()
+                ? article.cover_image
+                : "https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"
+            }
+            alt={article.title}
+            className="news-tech-image"
+          />
+
+
             <div className="news-tech-content">
               <h3 className="news-tech-title-text">{article.title}</h3>
               <p className="news-tech-description">

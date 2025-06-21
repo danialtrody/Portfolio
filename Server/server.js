@@ -21,7 +21,6 @@ app.use(express.json());
 
 
 //Contact page
-
 app.get("/api/contact", async (req, res) => {
   try {
     const result = await pool.query(`
@@ -57,7 +56,6 @@ app.post("/api/contact", async (req, res) => {
 
 
 //Project page
-
 app.get("/api/projects", async (req, res) => {
   try {
     const result = await pool.query(
@@ -129,7 +127,6 @@ app.put("/api/projects/:id", async (req, res) => {
 
 
 //Home page
-
 app.get("/api/home", async (req, res) => {
   try {
     const users = await pool.query(`
@@ -137,9 +134,7 @@ app.get("/api/home", async (req, res) => {
       FROM users_card
       JOIN users ON users_card.id = users.id
     `);
-    
     const media = await pool.query("SELECT * FROM media");
-
     res.json([media.rows, users.rows]); // still matches frontend expectations
   } catch (err) {
     console.error("Error fetching home data:", err.message);
@@ -149,10 +144,8 @@ app.get("/api/home", async (req, res) => {
 
 
 //login page
-
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
-
   try {
     const result = await pool.query(
       "SELECT * FROM users WHERE email = $1 AND password = $2",
@@ -175,9 +168,7 @@ app.post("/api/login", async (req, res) => {
 });
 
 
-
 //icons
-
 app.get("/api/icons", async (req, res) => {
   try {
     const result = await pool.query("SELECT id, name, icon FROM tech_icons ORDER BY id");
@@ -189,18 +180,14 @@ app.get("/api/icons", async (req, res) => {
 });
 
 
-
+// news page
 app.get("/api/news", async (req, res) => {
   try {
-    
     const response = await fetch("https://dev.to/api/articles?tag=technology");
-
     if (!response.ok) {
       throw new Error(`Dev.to API error: ${response.statusText}`);
     }
-
     const data = await response.json();
-
     res.json({ articles: data }); // ✅ IMPORTANT: wrap in articles key
   } catch (error) {
     console.error("Dev.to fetch error:", error.message);
