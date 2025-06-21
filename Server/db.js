@@ -6,6 +6,7 @@ function createDBConnection() {
     const environment = process.env.NODE_ENV || 'localdb';  // default to 'local' if NODE_ENV is not set
     // REACT_APP_API_BASE_URL="https://portfolio-6-5icm.onrender.com"
     let pool;
+    console.log("✅ CURRENT ENVIRONMENT:", process.env.NODE_ENV);
 
     if (environment === 'localdb') {
         pool = new Pool({
