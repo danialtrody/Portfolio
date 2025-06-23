@@ -21,6 +21,7 @@ app.use(express.json());
 
 
 //Contact page
+
 app.get("/api/contact", async (req, res) => {
   try {
     const result = await pool.query(`
