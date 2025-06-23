@@ -21,11 +21,11 @@ function LayoutWrapper() {
   };
 
   return (
+    <AuthProvider>     {/* Provide authentication context to child components */}
     <div style={backgroundStyle}>
       {/* Navbar component, disable it on login page */}
       <Navbar disabled={isLoginPage} />
-      {/* Provide authentication context to child components */}
-      <AuthProvider>
+
         {/* Define routes for different pages */}
         <Routes>
           <Route path="/" element={<Login />} />          {/* Login page */}
@@ -35,10 +35,11 @@ function LayoutWrapper() {
           <Route path="/resume" element={<Resume />} />    {/* Resume page */}
           <Route path="/news" element={<News />} />    {/* News page */}
         </Routes>
-      </AuthProvider>
       {/* Footer component, disable it on login page */}
       <Footer disabled={isLoginPage} />
     </div>
+    </AuthProvider>
+
   );
 }
 

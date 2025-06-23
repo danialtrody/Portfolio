@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from './AuthContext'; 
 
 export default function Navbar({ disabled }) {
   const collapseRef = useRef();
+  const { isAdmin } = useAuth(); 
 
   const handleDisabledClick = (e) => {
     if (disabled) {
@@ -49,8 +51,12 @@ export default function Navbar({ disabled }) {
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/" onClick={handleDisabledClick}>
-                Login
+                 {isAdmin ? 'Logout' : 'Login'}
               </Link>
+
+
+
+              
             </li>
             <li className="nav-item">
               <Link className="nav-link active" to="/home" onClick={handleDisabledClick}>
