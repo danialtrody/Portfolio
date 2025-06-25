@@ -204,3 +204,8 @@ h3.bg-dark.bg-opacity-50.p-2.rounded {
     cursor: unset !important;
   }
 }
+
+
+.row {
+  flex-direction: row-reverse;
+}

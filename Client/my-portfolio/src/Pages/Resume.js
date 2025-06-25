@@ -12,12 +12,9 @@ const cvsData = [
       github: "https://github.com/danialtrody",
     },
     objective: [
-      `Highly motivated final-year Computer Science student with a solid
-      academic background and hands-on experience in programming,
-      algorithms, data structures, and web development.`,
-      `Eager to leverage my technical skills to solve complex problems
-      and contribute to innovative projects, while growing professionally
-      in a dynamic environment.`,
+      `Final-year Computer Science student with a solid academic background and hands-on experience in programming, algorithms, data structures, and web development.`,
+      `Completed a 400-hour internship in frontend development, where I worked with real-world client systems and improved product performance.`,
+      `Eager to leverage my technical skills to solve complex problems and contribute to innovative projects, while growing professionally in a dynamic environment.`
     ],
     experience: [
       {
@@ -25,9 +22,9 @@ const cvsData = [
         company: "Fast Simon (Scholarship Program)",
         date: "Aug 2024 - Mar 2025",
         details: [
-          "Participated in a scholarship program as a Frontend Developer, working on eCommerce store customization and bug fixes using JavaScript, HTML, and CSS.",
-          "Gained practical experience with eCommerce platforms like Shopify, optimizing stores for better user experience.",
-          "Resolved technical issues reported by clients and implemented custom solutions tailored to their specific needs.",
+          "Participated in a scholarship-based internship as a Frontend Developer at a tech startup, focusing on eCommerce store customization.",
+          "Collaborated with the team to implement features and resolve client-reported issues using JavaScript, HTML, and CSS.",
+          "Delivered tailored solutions and optimizations on platforms like Shopify to improve functionality and user experience."
         ],
       },
     ],
@@ -40,23 +37,37 @@ const cvsData = [
     ],
     projects: [
       {
+        title: "Portfolio Website",
+        details: [
+          "A personal portfolio website built using React and Node.js with PostgreSQL integration.",
+          "It features a responsive design and showcases my skills, experience, projects, and contact information.",
+          "The backend uses Express.js to serve REST APIs, and the database is hosted on Render.",
+          "This project demonstrates full-stack development, deployment, and database management skills.",
+          <a key="demo" href="https://portfolio-5yr2.onrender.com" target="_blank" rel="noreferrer">Live Demo</a>
+        ],
+      },
+      {
         title: "To-Do Website Full-Stack Application",
         details: [
           "Developed a full-stack To-Do application using Node.js, Express, and JavaScript.",
           "The application enables users to register, log in, add, update, and delete tasks, with persistent data storage.",
-          <a key="github" href="https://github.com/danialtrody/ToDo.git" target="_blank" rel="noreferrer">GitHub Repo</a>,
+          <a key="github" href="https://github.com/danialtrody/ToDo.git" target="_blank" rel="noreferrer">GitHub Repo</a>
         ],
       },
     ],
-    skills: ["Quick learner", "Team work", "Self improvement"],
+
     courses: [
-      "Html - CSS - JavaScript",
-      "Python",
       "Linux",
-      "C / C++",
-      "Algorithm",
-      "Java-OOP",
-      <a key="udemy" href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank" rel="noreferrer">The Complete 2024 Web Development Bootcamp - Udemy</a>,
+      "Python",
+      "Html - CSS - JavaScript",
+      "React",
+      "Git",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "SQL",
+      <a key="udemy" href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank" rel="noreferrer">The Complete Web Development Bootcamp · Udemy</a>,
+      <a key="hacking" href="https://www.udemy.com/course/ethical-hacking-course/" target="_blank" rel="noreferrer">Complete Ethical Hacking Bootcamp · Udemy</a>
     ],
     languages: ["Hebrew", "Arabic", "English"],
   },
@@ -72,8 +83,7 @@ const cvsData = [
     },
     skills: ["Quick Learner", "Self Improvement", "Problem Solving"],
     languages: ["Arabic", "Hebrew", "English"],
-    volunteering: `Volunteered with Perach (2021–2024) as a mentor for 5th and 6th-grade students,
-      helping to improve their academic performance and social skills.`,
+    volunteering: `Volunteered with Perach (2021–2024) as a mentor for 5th and 6th-grade students, helping to improve their academic performance and social skills.`,
     summary: `Final-Year Computer Science Student at Tel-Hai College with a strong academic background and hands-on experience in React, Node.js, and SQL, with a strong foundation in algorithms and data structures. Proficient in languages such as JavaScript, C, C#, C++, Python, and Linux.`,
     education: [
       {
@@ -106,8 +116,6 @@ const cvsData = [
 
 // Step 2: Component to render one CV panel
 function CVPanel({ cv }) {
-
-  
   return (
     <div className="cv-panel" style={{ flex: 1, border: "1px solid #ccc", padding: "1rem", borderRadius: "6px" }}>
       <h1 className="cv-name">{cv.name}</h1>
@@ -128,9 +136,7 @@ function CVPanel({ cv }) {
       {cv.objective && (
         <section>
           <h2>Objective</h2>
-          {cv.objective.map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
+          {cv.objective.map((para, i) => <p key={i}>{para}</p>)}
         </section>
       )}
 
@@ -166,8 +172,8 @@ function CVPanel({ cv }) {
           <h2>Education</h2>
           {cv.education.map((edu, i) => (
             <p key={i}>
-              {edu.date && <>{edu.date}<br/></>}
-              {edu.institution && <strong>{edu.institution}</strong>}<br/>
+              {edu.date && <>{edu.date}<br /></>}
+              {edu.institution && <strong>{edu.institution}</strong>}<br />
               {edu.note && <>{edu.note}</>}
             </p>
           ))}
@@ -225,6 +231,14 @@ function CVPanel({ cv }) {
         </section>
       )}
 
+      {/* Interests */}
+      {cv.interests && (
+        <section>
+          <h2>Interests</h2>
+          <p>{cv.interests}</p>
+        </section>
+      )}
+
       {/* Volunteering */}
       {cv.volunteering && (
         <section>
@@ -232,8 +246,6 @@ function CVPanel({ cv }) {
           <p>{cv.volunteering}</p>
         </section>
       )}
-
-      
     </div>
   );
 }
@@ -241,7 +253,7 @@ function CVPanel({ cv }) {
 // Step 3: Main DualCV component rendering both CVs from data
 function DualCV() {
   return (
-    <div className="dual-cv-wrapper" style={{ display: "flex", gap: "2rem" }}>
+    <div className="dual-cv-wrapper" style={{ display: "flex", flexWrap: "wrap", gap: "2rem" }}>
       {cvsData.map((cv, i) => (
         <CVPanel key={i} cv={cv} />
       ))}
