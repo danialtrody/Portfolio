@@ -101,6 +101,11 @@ const cvsData = [
         title: "CourseGrader (C#)",
         details: `Application designed to streamline the management of student assignments and grades. This application enables educators to efficiently import, view, edit, and save student grades for various courses. The application reads data from Excel files and saves all course-related information in JSON format for persistent storage, ensuring that the original Excel files remain unaltered.`,
       },
+      {
+        title: "Portfolio Website",
+        details: 
+          "Built a full-stack portfolio website together with another student using React, Node.js, Express, and PostgreSQL. The site is responsive and showcases our skills, experience, and projects, with the backend deployed on Render. We continue to maintain and improve the project by adding new features and content regularly..",        
+      },
     ],
     courses: [
       "Html - CSS - JavaScript",
@@ -108,7 +113,10 @@ const cvsData = [
       "Linux",
       "C / C++ / C#",
       "Algorithm",
-      "Java-OOP",
+      "React",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
       <a key="udemy" href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank" rel="noreferrer">The Complete 2024 Web Development Bootcamp - Udemy</a>,
     ],
   },
