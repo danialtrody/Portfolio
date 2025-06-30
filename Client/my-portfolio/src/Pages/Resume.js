@@ -27,7 +27,7 @@ function Resume() {
   if (!cvs.length) return <p className="text-center my-5">No CVs found.</p>;
 
   return (
-    <div className="container my-5">
+    <div className="container my-5 resume-container">
       <div className="row">
         {cvs.map((cv, idx) => (
           <div key={cv.id || idx} className="col-12 col-md-6 mb-4">

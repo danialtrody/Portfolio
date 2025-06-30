@@ -207,7 +207,7 @@ h3.bg-dark.bg-opacity-50.p-2.rounded {
 
 
 @media (min-width: 1400px) {
-  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+  .resume-container {
       max-width: 1773px;
   }
 }
