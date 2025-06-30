@@ -211,3 +211,24 @@ h3.bg-dark.bg-opacity-50.p-2.rounded {
       max-width: 1773px;
   }
 }
+
+.cv-container {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  page-break-before: auto;
+  page-break-after: auto;
+}
+
+
+.no-list-style ul {
+  list-style-type: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.no-list-style {
+  border: none !important;
+  box-shadow: none !important;
+  page-break-inside: avoid !important; 
+}
+
