@@ -201,7 +201,6 @@ app.get("/api/cv", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM cv");
     res.json(result.rows);
-    console.log(result.rows);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
