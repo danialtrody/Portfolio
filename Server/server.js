@@ -197,6 +197,7 @@ app.get("/api/news", async (req, res) => {
 });
 
 
+//CV Page
 app.get("/api/cv", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM cv");
@@ -206,6 +207,53 @@ app.get("/api/cv", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+// PUT: Update CV by ID
+app.put('/api/cv/:id', async (req, res) => {
+  const { id } = req.params;
+  const cvData = req.body;
+
+
+  const updateQuery = `
+    UPDATE cv SET
+      name = $1,
+      title = $2,
+      contact = $3,
+      objective = $4,
+      experience = $5,
+      education = $6,
+      projects = $7,
+      courses = $8,
+      languages = $9
+    WHERE id = $10
+    RETURNING *;
+  `;
+
+  try {
+    const result = await pool.query(updateQuery, [
+      cvData.name,
+      cvData.title,
+      JSON.stringify(cvData.contact || null),
+      JSON.stringify(cvData.objective || null),
+      JSON.stringify(cvData.experience || null),
+      JSON.stringify(cvData.education || null),
+      JSON.stringify(cvData.projects || null),
+      JSON.stringify(cvData.courses || null),
+      JSON.stringify(cvData.languages || null),
+      id
+    ]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "CV not found" });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Database update failed:", err);
+    res.status(500).json({ error: 'Database update failed' });
+  }
+});
+
 
 
 // --- START SERVER ---

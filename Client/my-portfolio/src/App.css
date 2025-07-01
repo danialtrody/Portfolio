@@ -232,3 +232,9 @@ h3.bg-dark.bg-opacity-50.p-2.rounded {
   page-break-inside: avoid !important; 
 }
 
+
+.list-inline-item {
+  word-break: break-word; 
+  overflow-wrap: break-word; 
+  white-space: normal; 
+}
