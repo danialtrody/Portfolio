@@ -1,4 +1,5 @@
 💼 Danial Trody — Developer Portfolio
+
 Welcome to my personal portfolio website! This project showcases my background, skills, and development work. It includes my resume, featured projects, and a contact form, along with a tech news section and admin login for content management.
 
 🌐 Live Website
