@@ -6,12 +6,8 @@ const { fetch } = require('undici');
 const createDBConnection = require('./db');
 const pool = createDBConnection();
 
-// const pool = require("./db");
-const { Console } = require("console");
-
-
 const app = express();
-// const port = 5000;
+
 const port = process.env.PORT || 5000;
 
 
