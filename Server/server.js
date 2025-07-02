@@ -252,6 +252,32 @@ app.put('/api/cv/:id', async (req, res) => {
 
 
 
+// CustomerRequests page
+app.get("/api/admin/customerMessages", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM customer_request");
+    res.json(result.rows);
+    console.log(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+});
+
+// Delete request
+app.delete("/api/admin/customerMessages/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await pool.query("DELETE FROM customer_request WHERE id = $1", [id]);
+    res.status(200).json({ message: "Deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+});
+
+
+
 // --- START SERVER ---
 app.listen(port, () => {
   console.log(`✅ Server running at http://localhost:${port}`);

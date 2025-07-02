@@ -83,6 +83,16 @@ export default function Navbar({ disabled }) {
                 News
               </Link>
             </li>
+
+            {isAdmin && (
+              <li className="nav-item">
+              <Link className="nav-link" to="/admin/customerMessages" onClick={handleDisabledClick}>
+              CustomerRequests
+              </Link>
+            </li>
+
+             )}
+
           </ul>
         </div>
       </div>
