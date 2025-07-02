@@ -9,6 +9,7 @@ const API_BASE_URL = "https://portfolio-6-5icm.onrender.com"
 export default function Projects() { 
   const { isAdmin } = useAuth(); 
   const [projects, setProjects] = useState([]); 
+  const [selectedTech, setSelectedTech] = useState('All'); // NEW: state for selected technology filter
   const [formData, setFormData] = useState({
     title: '', description: '', technologies: '', github: '', image: ''
   }); 
@@ -72,6 +73,29 @@ export default function Projects() {
   const resetForm = () => setFormData({
     title: '', description: '', technologies: '', github: '', image: ''
   }); 
+  
+  //  Extract all unique technologies from the projects
+  const uniqueTechnologies = Array.from(new Set(
+    projects.flatMap(p =>
+      typeof p.technologies === 'string'
+        ? p.technologies.split(',').map(t => t.trim())
+        : Array.isArray(p.technologies)
+          ? p.technologies
+          : []
+    )
+  ));
+
+  // ✅ Filter the projects based on selected technology
+  const filteredProjects = selectedTech === 'All'
+    ? projects
+    : projects.filter(p =>
+        (typeof p.technologies === 'string'
+          ? p.technologies.split(',').map(t => t.trim())
+          : Array.isArray(p.technologies)
+            ? p.technologies
+            : []
+        ).includes(selectedTech)
+      );
 
   if (isAdmin) { 
     // Render form and admin controls if user is admin
@@ -107,8 +131,25 @@ export default function Projects() {
           </div>
         </form>
         <hr />
+
+        {/* ✅ Technology filter dropdown for admin */}
+        <div className="mb-3">
+          <label htmlFor="techFilter" className="form-label fw-bold">Filter by Technology:</label>
+          <select
+            id="techFilter"
+            className="form-select"
+            value={selectedTech}
+            onChange={e => setSelectedTech(e.target.value)}
+          >
+            <option value="All">All</option>
+            {uniqueTechnologies.map(tech => (
+              <option key={tech} value={tech}>{tech}</option>
+            ))}
+          </select>
+        </div>
+
         <div className="row">
-          {projects.map(p => (
+          {filteredProjects.map(p => (
             <ProjectCard key={p.id} project={p} onEdit={handleEdit} onDelete={handleDelete} isAdmin />
             // Render project cards with admin controls
           ))}
@@ -119,8 +160,27 @@ export default function Projects() {
 
   return (
     <div className="container mt-4">
+
+      {/* ✅ Technology filter for regular users*/}
       <div className="row">
-        {projects.map(p => (
+        <div className="col-12 mb-3">
+          <label htmlFor="techFilter" className="form-label fw-bold">Filter by Technology:</label>
+          <select
+            id="techFilter"
+            className="form-select"
+            value={selectedTech}
+            onChange={e => setSelectedTech(e.target.value)}
+          >
+            <option value="All">All</option>
+            {uniqueTechnologies.map(tech => (
+              <option key={tech} value={tech}>{tech}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div className="row">
+        {filteredProjects.map(p => (
           <ProjectCard key={p.id} project={p} isAdmin={false} />
           // Render project cards without admin controls for normal users
         ))}

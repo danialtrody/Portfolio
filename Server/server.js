@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs");
 const { fetch } = require('undici');
 
 const createDBConnection = require('./db');
