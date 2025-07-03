@@ -40,18 +40,14 @@ export default function ContactForm({ formData, setFormData, handleSubmit }) {
         />
 
         <label htmlFor="country">Country</label>
-        <select
+        <input
+          type="text"
           id="country"
           name="country"
           value={formData.country}
           onChange={handleChange}
-        >
-          <option value="">Select a country</option>
-          <option value="israel">Israel</option>
-          <option value="australia">Australia</option>
-          <option value="canada">Canada</option>
-          <option value="usa">USA</option>
-        </select>
+          placeholder="Your Country"
+        />
 
         <label htmlFor="subject">Subject</label>
         <textarea

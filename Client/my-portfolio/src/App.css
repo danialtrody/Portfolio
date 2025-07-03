@@ -242,8 +242,10 @@ h3.bg-dark.bg-opacity-50.p-2.rounded {
 .costumer-reequest-header {
   text-align: center;
   margin-top: 25px;
-  font-family: serif;
+  font-family: 'Courier New', Courier, monospace;
 }
+
+
 
 .costumer-reequest-container {
   display: grid !important;

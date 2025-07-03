@@ -256,7 +256,6 @@ app.get("/api/admin/customerMessages", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM customer_request");
     res.json(result.rows);
-    console.log(result.rows);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
