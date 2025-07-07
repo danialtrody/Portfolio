@@ -212,7 +212,8 @@ function ProjectCard({ project, onEdit, onDelete, isAdmin }) {
           )}
         </div>
       </div>
-    </div>
+    </div> 
   );
-}
+} 
+
  
