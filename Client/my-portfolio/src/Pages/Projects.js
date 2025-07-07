@@ -215,3 +215,4 @@ function ProjectCard({ project, onEdit, onDelete, isAdmin }) {
     </div>
   );
 }
+ 
