@@ -131,7 +131,7 @@ app.get("/api/home", async (req, res) => {
       JOIN users ON users_card.id = users.id
     `);
     const media = await pool.query("SELECT * FROM media");
-    res.json([media.rows, users.rows]); // still matches frontend expectations
+    res.json([media.rows, users.rows]); 
   } catch (err) {
     console.error("Error fetching home data:", err.message);
     res.status(500).json({ error: err.message });
