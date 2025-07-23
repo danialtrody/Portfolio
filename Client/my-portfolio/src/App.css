@@ -271,13 +271,13 @@ h3.bg-dark.bg-opacity-50.p-2.rounded {
 }
 
 /* 🔹 Laptop */
-@media (min-width: 1024px)  {
+@media (min-width: 1024px) and (max-width: 1600px)  {
   .costumer-reequest-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1601px) {
   .costumer-reequest-container {
     grid-template-columns: repeat(4, 1fr);
   }
