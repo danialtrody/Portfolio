@@ -5,7 +5,6 @@ import Carousel from 'react-bootstrap/Carousel';
 
 // const API_BASE_URL = 'http://localhost:5000';
 const API_BASE_URL = "https://portfolio-6-5icm.onrender.com" 
-// const API_BASE_URL = "https://portfolio-0rl4.onrender.com
 
 export default function Home() {
   // State to hold home page data: [carouselItems, teamMembers]

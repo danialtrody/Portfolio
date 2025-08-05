@@ -25,16 +25,7 @@ function createDBConnection() {
             ssl: { rejectUnauthorized: false }
             
         });
-    } else if (environment === 'cloud') {
-        pool = new Pool({
-            user: process.env.CLOUD_DB_USER,
-            host: process.env.CLOUD_DB_HOST,
-            database: process.env.CLOUD_DB_NAME,
-            password: process.env.CLOUD_DB_PASSWORD,
-            port: process.env.CLOUD_DB_PORT,
-            ssl: { rejectUnauthorized: false }
-        });
-    }
+    } 
 
     return pool;
 }
