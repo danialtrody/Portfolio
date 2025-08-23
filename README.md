@@ -4,7 +4,10 @@ Welcome to my personal portfolio website! This project showcases my background, 
 
 🌐 Live Website
 📍 Visit My Portfolio
-## https://portfolio-5yr2.onrender.com ##
+
+[![Live Demo](https://img.shields.io/badge/🌍%20Live%20Demo-Click%20Here-brightgreen?style=for-the-badge)]( https://portfolio-5yr2.onrender.com )
+
+
 
 
 📸 Preview
